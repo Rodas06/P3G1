@@ -4,41 +4,33 @@
 using namespace std;
 
 class User {
-
     private:
-    string Nome, Email, Telemovel;
-
+    string nome, email, telemovel;
     public:
-
-    User(string nome, string email, string tele): Nome(nome), Email(email), Telemovel(tele){}
-    
+    User(const string &nome, const string &email, const string &tele): nome(nome), email(email), telemovel(tele){}
 };
 
 class Msg {
     private:
 
-    string Info;
+    string info;
 
     public:
 
-    Msg (string info): Info(info){}
-
+    Msg (const string &info): info(info){}
     virtual void getType()=0;
 };
 
 class EmailMsg: public Msg{
-
     private:
-
+    static int n;
     unsigned int ID;
 
     public:
-
-    EmailMsg(string info, unsigned int id): Msg(info), ID(id){}
-
-    
-
+    EmailMsg(const string &info): Msg(info), ID(++n){}
 };
+int EmailMsg :: n = 1;
+
 
 int main (){
 
