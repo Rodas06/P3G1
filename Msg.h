@@ -23,6 +23,8 @@ public:
     void getType() const override {
         cout << "Mensagem enviada por email." << endl;
     }
+    string getOrigem(){return srcAddr;}
+    string getDest(){return dstAddr;}
 };
 int EmailMsg :: n = 1;
 
@@ -36,6 +38,8 @@ public:
     void getType() const override {
         cout << "Mensagem enviada por SMS." << endl;
     }
+    string getNumOrigem(){return srcPhoneNo;}
+    string getNumDest(){return dstPhoneNo;}
 };
 int MobileMsg :: n = 1000;
 #endif
