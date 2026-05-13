@@ -5,9 +5,8 @@
 #include "Msg.h"
 #include <fstream>
 #include <vector>
-/*>>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f*/
-
 using namespace std;
+/*>>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f*/
 
 /*class User {
     private:
@@ -24,7 +23,7 @@ using namespace std;
 };*/
 /*>>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f*/
 
-class Msg {
+/*class Msg {
     private:
     string info;
 
@@ -70,7 +69,7 @@ class MobileMsg: public Msg{
     public:
     MobileMsg(const string &info, const string &src, const string &dst): Msg(info), srcPhoneNo(src), dstPhoneNo(dst), ID(++n){}
 };
-int MobileMsg :: n = 1000;
+int MobileMsg :: n = 1000;*/
 
 void InfoUser(vector<User> &utilizadores){
     cout << "Introduza o nome do utilizador: ";
