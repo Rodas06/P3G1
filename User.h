@@ -6,5 +6,8 @@ class User {
 private:
 string nome, email, telemovel;
 public:
-User(const string &nome, const string &email, const string &tele): nome(nome), email(email), telemovel(tele){}
+    User( string &nome, string &email, string &tele): nome(nome), email(email), telemovel(tele){}
+    string getNome() { return nome; }
+    string getEmail() { return email; }
+    string getTelemovel() { return telemovel; }
 };
