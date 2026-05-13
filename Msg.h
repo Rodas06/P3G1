@@ -1,33 +1,38 @@
 #ifndef MSG_H
 #define MSG_H
 #include <string>
-
+#include <iostream>
+using namespace std;
 class Msg {
 private:
-    std::string info;
+    string info;
 public:
-    Msg(const std::string &info);
+    Msg(const string &info);
     virtual ~Msg() = default;
-    virtual std::string getType() const = 0;
+    virtual void getType() const = 0;
 };
 
 class EmailMsg : public Msg {
 private:
     static int n;
     unsigned int ID;
-    std::string srcAddr, dstAddr;
+    string srcAddr, dstAddr;
 public:
-    EmailMsg(const std::string &info, const std::string &src, const std::string &dst);
-    std::string getType() const override;
+    EmailMsg(const string &info, const string &src, const string &dst);
+    void getType() const override {
+        cout << "Mensagem enviada por email." << endl;
+    };
 };
 
 class MobileMsg : public Msg {
 private:
     static int n;
     unsigned int ID;
-    std::string srcPhoneNo, dstPhoneNo;
+    string srcPhoneNo, dstPhoneNo;
 public:
-    MobileMsg(const std::string &info, const std::string &src, const std::string &dst);
-    std::string getType() const override;
+    MobileMsg(const string &info, const string &src, const string &dst);
+    void getType() const override {
+        cout << "Mensagem enviada por SMS." << endl;
+    };
 };
 #endif

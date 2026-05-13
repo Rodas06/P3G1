@@ -2,11 +2,10 @@
 <<<<<<< HEAD
 #include <string>
 #include "User.h"
-=======
 #include <fstream>
 #include <vector>
 #include <string>
->>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f
+/*>>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f*/
 
 using namespace std;
 
@@ -17,13 +16,13 @@ using namespace std;
     User(const string &nome, const string &email, const string &tele): nome(nome), email(email), telemovel(tele){}
 <<<<<<< HEAD
 };*/
-=======
+/*=======
 
     string getNome() const { return nome; }
     string getEmail() const { return email; }
     string getTelemovel() const { return telemovel; }
-};
->>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f
+};*/
+/*>>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f*/
 
 class Msg {
     private:
