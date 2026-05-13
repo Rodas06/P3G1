@@ -1,10 +1,10 @@
 #include <iostream>
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 #include <string>
 #include "User.h"
+#include "Msg.h"
 #include <fstream>
 #include <vector>
-#include <string>
 /*>>>>>>> 8bf08bd047f6c8af2b7e05284ddf72bca784ef0f*/
 
 using namespace std;
@@ -121,7 +121,7 @@ void FileInput(vector<User> &utilizadores){
 
 }
 
-class MobileMsg : public Msg {
+/*class MobileMsg : public Msg {
 
 private:
     static unsigned int next_id;
@@ -145,7 +145,7 @@ public:
     string getDstPhoneNo() const { return dstPhoneNo; }
 };
 
-unsigned int MobileMsg::next_id = 1000;
+unsigned int MobileMsg::next_id = 1000;*/
 
 int main (){
 

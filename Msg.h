@@ -2,6 +2,7 @@
 #define MSG_H
 #include <string>
 #include <iostream>
+#include <utility>
 using namespace std;
 class Msg {
 private:
@@ -18,11 +19,12 @@ private:
     unsigned int ID;
     string srcAddr, dstAddr;
 public:
-    EmailMsg(const string &info, const string &src, const string &dst);
+    EmailMsg(const string &info, string s, string d): Msg(info), ID(++n), srcAddr(std::move(s)), dstAddr(std::move(d)){}
     void getType() const override {
         cout << "Mensagem enviada por email." << endl;
-    };
+    }
 };
+int EmailMsg :: n = 1;
 
 class MobileMsg : public Msg {
 private:
@@ -30,9 +32,10 @@ private:
     unsigned int ID;
     string srcPhoneNo, dstPhoneNo;
 public:
-    MobileMsg(const string &info, const string &src, const string &dst);
+    MobileMsg(const string &info, string src, string dst) : Msg(info), ID(++n), srcPhoneNo(std::move(src)), dstPhoneNo(std::move(dst)){}
     void getType() const override {
         cout << "Mensagem enviada por SMS." << endl;
-    };
+    }
 };
+int MobileMsg :: n = 1000;
 #endif
