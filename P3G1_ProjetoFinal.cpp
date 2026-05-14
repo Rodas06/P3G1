@@ -4,7 +4,6 @@
 #include "Msg.h"
 #include <fstream>
 #include <vector>
-#include <memory>
 using namespace std;
 
 void InfoUser(vector<User> &utilizadores){
@@ -101,58 +100,50 @@ void FileMsgInput(vector<Msg*> &mensagens) {
     }
 }
 
-// Adicionar mensagem pelo teclado
-void criarMensagem(vector <shared_ptr<Msg>>& mensagens) {
-    string rem, dest, texto;
-    cout << "Mensagem enviada por email(1) ou SMS(2)?" << endl;
-    int type;
-    cin >> type;
-    cin.ignore();
-    cout << "Insira o email/numero de telemovel do remetente:" << endl;
-    getline(cin, rem );
-    cout << "Insira o email/numero de telemovel do destinatario:" << endl;
-    getline(cin, dest);
-    cout << "Escreva a sua mensagem" << endl;
-    getline(cin, texto);
-    if (type == 1) {
-        mensagens.push_back(make_shared <EmailMsg>(texto, rem, dest));
-    }
-    else if (type == 2) {
-        mensagens.push_back(make_shared <MobileMsg>(texto, rem, dest));
-    }
-    else {
-        cout << "Erro. Tipo de mensagem invalido" << endl;
-    }
-}
-
 
 
 int main (){
 
     int escolha;
     vector<User> utilizadores;
-    do{
-    cout<< "Escolha como quer introduzir os dados: "<<endl;
-    cout<< "1 - A partir de um ficheiro CSV"<<endl;
-    cout<< "2 - A partir do input do utilizador"<<endl;
-    cin >> escolha;
-    switch (escolha)
-    {
-    case 1:
-    
-        FileInput(utilizadores);
+    vector<Msg*> mensagens;
+    do {
+        cout << "\n=== MENU ===" << endl;
+        cout << "1 - Utilizador a partir de um ficheiro CSV" << endl;
+        cout << "2 - Utilizador a partir do input" << endl;
+        cout << "3 - Mensagem a partir de um ficheiro CSV" << endl; 
+        cout << "4 - Mensagem a partir do input" << endl;          
+        cout << "0 - Sair" << endl;                                 
+        cout << "Opcao: ";
         
-        break;
-    
-    case 2:
+        cin >> escolha;
+        cin.ignore(); 
 
-        InfoUser(utilizadores);
-
-        break;
+        switch (escolha)
+        {
+        case 1:
+            FileInput(utilizadores);
+            break;
+        case 2:
+            InfoUser(utilizadores);
+            break;
+        case 3:
+            FileMsgInput(mensagens); 
+            break;
+        case 4:
+            InfoMsg(mensagens);      
+            break;
+        case 0:
+            cout << "A sair..." << endl;
+            break;
+        default:
+            cout << "Opcao invalida, tente de novo." << endl;
+        }
+    } while (escolha != 0);
+    for(Msg* m : mensagens) {
+        delete m;
     }
-} while (escolha != 1 && escolha != 2);
-
-    
+    mensagens.clear();
     return 0;
     
 
