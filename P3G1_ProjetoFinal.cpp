@@ -4,6 +4,7 @@
 #include "Msg.h"
 #include <fstream>
 #include <vector>
+#include <memory>
 using namespace std;
 
 void InfoUser(vector<User> &utilizadores){
@@ -55,6 +56,30 @@ void FileInput(vector<User> &utilizadores){
 void printInfo(vector <User> &utilizadores) {
     for (const auto &u : utilizadores) {
         cout << "Nome: " << u.getNome() << ", Email: " << u.getEmail() << ", Telemóvel: " << u.getTelemovel() << endl;
+    }
+}
+
+// Adicionar mensagem pelo teclado
+void criarMensagem(vector <shared_ptr<Msg>>& mensagens) {
+    string rem, dest, texto;
+    cout << "Mensagem enviada por email(1) ou SMS(2)?" << endl;
+    int type;
+    cin >> type;
+    cin.ignore();
+    cout << "Insira o email/numero de telemovel do remetente:" << endl;
+    getline(cin, rem );
+    cout << "Insira o email/numero de telemovel do destinatario:" << endl;
+    getline(cin, dest);
+    cout << "Escreva a sua mensagem" << endl;
+    getline(cin, texto);
+    if (type == 1) {
+        mensagens.push_back(make_shared <EmailMsg>(texto, rem, dest));
+    }
+    else if (type == 2) {
+        mensagens.push_back(make_shared <MobileMsg>(texto, rem, dest));
+    }
+    else {
+        cout << "Erro. Tipo de mensagem invalido" << endl;
     }
 }
 
