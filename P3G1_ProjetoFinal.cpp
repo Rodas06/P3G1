@@ -58,24 +58,6 @@ void printInfo(vector <User> &utilizadores) {
         cout << "Nome: " << u.getNome() << ", Email: " << u.getEmail() << ", Telemóvel: " << u.getTelemovel() << endl;
     }
 }
-void InfoMsg(vector<Msg*> &mensagens) {
-    int tipo;
-    cout << "Tipo de mensagem (1-Email, 2-SMS): ";
-    cin >> tipo;
-    cin.ignore();
-    string info, src, dst;
-    cout << "Texto da mensagem: ";
-    getline(cin, info);
-    if (tipo == 1) {
-        cout << "Email de origem: "; getline(cin, src);
-        cout << "Email de destino: "; getline(cin, dst);
-        mensagens.push_back(new EmailMsg(info, src, dst));
-    } else if (tipo == 2) {
-        cout << "Telemovel de origem: "; getline(cin, src);
-        cout << "Telemovel de destino: "; getline(cin, dst);
-        mensagens.push_back(new MobileMsg(info, src, dst));
-    }
-}
 
 void FileMsgInput(vector<Msg*> &mensagens) {
     string file;
@@ -102,23 +84,30 @@ void FileMsgInput(vector<Msg*> &mensagens) {
 }
 
 // Adicionar mensagem pelo teclado
-void criarMensagem(vector <shared_ptr<Msg>>& mensagens) {
+void criarMensagem(vector <Msg*> &mensagens) {
     string rem, dest, texto;
     cout << "Mensagem enviada por email(1) ou SMS(2)?" << endl;
     int type;
     cin >> type;
     cin.ignore();
-    cout << "Insira o email/numero de telemovel do remetente:" << endl;
-    getline(cin, rem );
-    cout << "Insira o email/numero de telemovel do destinatario:" << endl;
-    getline(cin, dest);
-    cout << "Escreva a sua mensagem" << endl;
-    getline(cin, texto);
-    if (type == 1) {
-        mensagens.push_back(make_shared <EmailMsg>(texto, rem, dest));
-    }
+        if (type == 1)
+        {
+            cout << "Email do remetente:" << endl;
+            getline(cin, rem );
+            cout << "Email do destinatario:" << endl;
+            getline(cin, dest);
+            cout << "Escreva a sua mensagem" << endl;
+            getline(cin, texto);
+            mensagens.push_back(new EmailMsg(texto, rem, dest));
+        }
     else if (type == 2) {
-        mensagens.push_back(make_shared <MobileMsg>(texto, rem, dest));
+            cout << "Telemovel do remetente:" << endl;
+            getline(cin, rem );
+            cout << "Telemovel do destinatario:" << endl;
+            getline(cin, dest);
+            cout << "Escreva a sua mensagem" << endl;
+            getline(cin, texto);
+            mensagens.push_back(new MobileMsg (texto, rem, dest));
     }
     else {
         cout << "Erro. Tipo de mensagem invalido" << endl;
