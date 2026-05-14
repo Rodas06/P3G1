@@ -48,14 +48,35 @@ void FileInput(vector<User> &utilizadores){
         cout << "Não foi possível abrir o ficheiro." << endl;
     }
 
-    /*for (const auto &user : listaUtilizadores) {
-        cout << "Nome: " << user.getNome() << ", Email: " << user.getEmail() << ", Telemóvel: " << user.getTelemovel() << endl;
-    }*/
-
 }
 void printInfo(vector <User> &utilizadores) {
     for (const auto &u : utilizadores) {
         cout << "Nome: " << u.getNome() << ", Email: " << u.getEmail() << ", Telemóvel: " << u.getTelemovel() << endl;
+    }
+}
+void criarMensagem(vector<Msg*> &mensagens) {
+    int tipo;
+    cout << "Tipo de mensagem (1-Email, 2-SMS): ";
+    cin >> tipo;
+    cin.ignore();
+    string texto, rem, dest;
+    cout << "Mensagem:";
+    getline(cin, texto);
+    if (tipo == 1) {
+        cout << "Email do/a remetente: ";
+        getline(cin, rem);
+        cout << "Email do/a destinatario/a:";
+        getline(cin, dest);
+        mensagens.push_back(new EmailMsg(texto, rem, dest));
+    } else if (tipo == 2) {
+        cout << "Telemovel do/a remetente: ";
+        getline(cin, rem);
+        cout << "Telemovel do/a destinatario/a: ";
+        getline(cin, dest);
+        mensagens.push_back(new MobileMsg(texto, rem, dest));
+    }
+    else {
+        cout << "Erro. Tipo de mensagem invalido" << endl;
     }
 }
 
@@ -82,39 +103,6 @@ void FileMsgInput(vector<Msg*> &mensagens) {
         ficheiro.close();
     }
 }
-
-// Adicionar mensagem pelo teclado
-void criarMensagem(vector <Msg*> &mensagens) {
-    string rem, dest, texto;
-    cout << "Mensagem enviada por email(1) ou SMS(2)?" << endl;
-    int type;
-    cin >> type;
-    cin.ignore();
-        if (type == 1)
-        {
-            cout << "Email do remetente:" << endl;
-            getline(cin, rem );
-            cout << "Email do destinatario:" << endl;
-            getline(cin, dest);
-            cout << "Escreva a sua mensagem" << endl;
-            getline(cin, texto);
-            mensagens.push_back(new EmailMsg(texto, rem, dest));
-        }
-    else if (type == 2) {
-            cout << "Telemovel do remetente:" << endl;
-            getline(cin, rem );
-            cout << "Telemovel do destinatario:" << endl;
-            getline(cin, dest);
-            cout << "Escreva a sua mensagem" << endl;
-            getline(cin, texto);
-            mensagens.push_back(new MobileMsg (texto, rem, dest));
-    }
-    else {
-        cout << "Erro. Tipo de mensagem invalido" << endl;
-    }
-}
-
-
 
 int main (){
 
